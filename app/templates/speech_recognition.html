@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <h1 class="text-center text-primary fw-bold">Reconocimiento de Voz</h1>
+                    <p class="text-center text-muted">Esta sección permite convertir la voz de los usuarios en texto.</p>
+
+                    <div class="mb-4">
+                        <label for="voiceCommand" class="form-label fw-bold">Ingrese su comando de voz:</label>
+                        <input type="text" class="form-control" id="voiceCommand" placeholder="Hable aquí..." required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="startRecognition">Iniciar Reconocimiento de Voz</button>
+                    </div>
+
+                    <div id="result" class="mt-4 text-center">
+                        <!-- Display voice recognition results here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

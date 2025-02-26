@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <!-- <h1 class="text-center text-primary fw-bold">Análisis de Sentimientos</h1> -->
+                    <h1 class="text-center text-primary fw-bold">Bienvenido {{ user_name }}</h1>
+                    <p class="text-center text-muted">Detecta emociones en textos y obtén insights significativos.</p>
+                    
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="textInput" class="form-label fw-bold">Ingrese el texto para analizar:</label>
+                            <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Analizar Sentimiento</button>
+                        </div>
+                    </form>
+
+                    {% if result %}
+                    <div class="mt-4 text-center">
+                        <h4 class="fw-bold">Resultado:</h4>
+                        <p class="fs-5">{{ result }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

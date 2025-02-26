@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid p-5 text-center text-white" style="background: linear-gradient(to right, #1e3c72, #2a5298);">
+        <h1 class="display-4 fw-bold">Bienvenido a la Revolución de la Inteligencia Artificial</h1>
+        <p class="lead">Explora técnicas avanzadas de IA para reconocimiento facial, análisis de sentimientos, clasificación de solicitudes y más.</p>
+        <a href="{{ url_for('facial_recognition.index') }}" class="btn btn-light btn-lg me-3">Explorar IA</a>
+        <a href="{{ url_for('chatbot.index') }}" class="btn btn-outline-light btn-lg">Probar Chatbot</a>
+    </div>
+    
+    <div class="container mt-4">
+        <div id="carouselInfo" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselInfo" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselInfo" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselInfo" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselInfo" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselInfo" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='img/face.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Reconocimiento Facial</h5>
+                        <p>Analiza rostros en imágenes y videos con tecnología avanzada de IA.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/sentiment.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Análisis de Sentimientos</h5>
+                        <p>Detecta emociones en textos y obtén insights de opiniones.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/clasification.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Clasificación de Solicitudes</h5>
+                        <p>Clasifica las solicitudes de los usuarios en categorías definidas.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/speech.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Reconocimiento de Voz</h5>
+                        <p>Convierte voz a texto.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/chatbot.png') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Chatbot Inteligente</h5>
+                        <p>Interactúa con un chatbot impulsado por IA y aprende en tiempo real.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselInfo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselInfo" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- <div class="container mt-5">
+        <h2 class="text-center mb-4">Descubre el Poder de la Inteligencia Artificial</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Reconocimiento Facial</h5>
+                        <p class="card-text">Analiza rostros en imágenes y videos con tecnología avanzada de IA.</p>
+                        <a href="{{ url_for('facial_recognition') }}" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Análisis de Sentimientos</h5>
+                        <p class="card-text">Detecta emociones en textos y obtén insights de opiniones.</p>
+                        <a href="{{ url_for('sentiment_analysis') }}" class="btn btn-primary">Explorar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Chatbot Inteligente</h5>
+                        <p class="card-text">Interactúa con un chatbot impulsado por IA y aprende en tiempo real.</p>
+                        <a href="{{ url_for('chatbot') }}" class="btn btn-primary">Probar ahora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container-fluid text-white text-center py-5 mt-4" style="background: #2a5298;">
+        <h2 class="fw-bold">Transforma Datos en Conocimiento</h2>
+        <!-- <p class="lead">Nuestra plataforma utiliza técnicas de aprendizaje supervisado y no supervisado para brindarte resultados precisos.</p> -->
+    </div>
+{% endblock %}
