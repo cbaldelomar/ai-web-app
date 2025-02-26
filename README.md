@@ -1,4 +1,4 @@
-# My AI Web App
+# AI Web App
 
 This project is a web application built using Flask and Python, designed to provide an interactive and personalized experience by combining multiple AI techniques. The application features a responsive design using Bootstrap and includes various functionalities such as facial recognition, sentiment analysis, request classification, voice recognition, supervised and unsupervised learning, and a chatbot.
 
