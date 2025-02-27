@@ -14,25 +14,23 @@
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="auth-container text-center">
-                            <button id="authenticate" class="btn btn-primary w-100 mt-4">Acceder</button>
+                            <button type="button" id="authenticate" class="btn btn-primary w-100 mt-4">Acceder</button>
                             <div class="fw-bold mt-3">O registrate</div>
                             <input type="text" id="name" class="form-control text-center mt-2" placeholder="Ingrese su nombre">
-                            <span class="text-danger" id="name_validation"></span>
-                            <button id="register" class="btn btn-success w-100 mt-3">Registrarse</button>
+                            <div>
+                                <span class="text-danger" id="name_validation"></span>
+                            </div>
+                            <button type="button" id="register" class="btn btn-success w-100 mt-3">Registrarse</button>
+                            <div class="mt-1">
+                                <span class="text-danger" id="message"></span>
+                            </div>
                             <!-- <p id="message" class="text-center mt-3"></p> -->
                         </div>
                     </div>
-
-                    {% if result %}
-                    <div class="mt-4 text-center">
-                        <h4 class="fw-bold">Resultado del Reconocimiento:</h4>
-                        <p class="fs-5">{{ result }}</p>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="{{ url_for('static', filename='js/facial.js') }}"></script>
+<script src="{{ url_for('static', filename='js/authentication.js') }}"></script>
 {% endblock %}

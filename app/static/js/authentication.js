@@ -28,7 +28,7 @@ const captureImage = () => {
 }
 
 const getSuccessUrl = (name) => {
-  return `/sentiment_analysis/${name}`;
+  return `/text-analysis/${name}`;
 }
 
 // Registrar una nueva cara
