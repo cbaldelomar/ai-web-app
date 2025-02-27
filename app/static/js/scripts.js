@@ -3,26 +3,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-const showAlert = (message, type) => {
-    const alertPlaceholder = document.getElementById('alert_placeholder')
+const showMessage = (message, type) => {
+    const messageElement = document.getElementById('message')
 
-    if (!message) {
-        alertPlaceholder.innerHTML = "";
+    if (!messageElement) {
         return;
     }
 
-    alertPlaceholder.innerHTML = [
-        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-        `   <div>${message}</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        '</div>'
-    ].join('')
+    messageElement.textContent = message || "";
 
-    alertPlaceholder.focus()
+    // const alertPlaceholder = document.getElementById('alert_placeholder')
+
+    // if (!message) {
+    //     alertPlaceholder.innerHTML = "";
+    //     return;
+    // }
+
+    // alertPlaceholder.innerHTML = [
+    //     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    //     `   <div>${message}</div>`,
+    //     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    //     '</div>'
+    // ].join('')
+
+    // alertPlaceholder.focus()
 }
 
 const fetchData = async (url, method = "GET", data = null) => {
-    showAlert(false);
+    showMessage(false);
 
     try {
         // Define request options
@@ -54,11 +62,11 @@ const fetchData = async (url, method = "GET", data = null) => {
 
             // Handle client errors (400-499)
             if (response.status >= 400 && response.status < 500) {
-                showAlert(errorMessage, "warning");
+                showMessage(errorMessage, "warning");
             }
             // Handle server errors (500+)
             else if (response.status >= 500) {
-                showAlert(errorMessage, "danger");
+                showMessage(errorMessage, "danger");
             }
 
             throw new Error(errorMessage);
