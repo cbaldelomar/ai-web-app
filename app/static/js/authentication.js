@@ -31,18 +31,46 @@ const getSuccessUrl = (name) => {
   return `/text-analysis/${name}`;
 }
 
-// Registrar una nueva cara
-registerBtn.addEventListener("click", async () => {
+// Autenticar usuario con el rostro
+authenticateBtn.addEventListener("click", () => {
+  const image = captureImage();
+
+  nameInput.classList.remove("is-invalid");
+  message.textContent = "";
+  nameValidation.textContent = "";
+
+  registerBtn.disabled = true;
+  authenticateBtn.disabled = true;
+
+  fetchData("/facial_recognition/authenticate", "POST", { image })
+    .then(data => {
+      window.location.href = getSuccessUrl(data.name);
+    })
+    .catch(() => {
+
+    })
+    .finally(() => {
+      registerBtn.disabled = false;
+      authenticateBtn.disabled = false;
+    });
+});
+
+// Registrar un nuevo rostro
+registerBtn.addEventListener("click", () => {
     const name = nameInput.value.trim();
 
+    nameInput.classList.remove("is-invalid");
+    message.textContent = "";
     nameValidation.textContent = "";
     if (!name) {
         nameValidation.textContent = "Por favor, ingrese su nombre.";
+        nameInput.classList.add("is-invalid");
         nameInput.focus()
         return;
     }
 
     registerBtn.disabled = true;
+    authenticateBtn.disabled = true;
 
     const image = captureImage();
     
@@ -51,51 +79,10 @@ registerBtn.addEventListener("click", async () => {
         window.location.href = getSuccessUrl(name);
       })
       .catch(() => {
+
+      })
+      .finally(() => {
         registerBtn.disabled = false;
+        authenticateBtn.disabled = false;
       });
-
-    // try {
-    //     const response = await fetch("/facial_recognition/register", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({ name, image }),
-    //     });
-    //     if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-    //     const result = await response.json();
-    //     message.textContent = result.success ? `Registro exitoso: ${result.message}` : result.error;
-    // } catch (error) {
-    //     showAlert("Error al intentar registrar. Intente de nuevo, por favor.", "danger");
-    //     // message.textContent = "Error al intentar registrar";
-    //     console.error("Error en la solicitud de registro:", error);
-    // }
-});
-
-// Autenticar usuario
-authenticateBtn.addEventListener("click", async () => {
-    const image = captureImage();
-
-    fetchData("/facial_recognition/authenticate", "POST", { image })
-      .then(data => {
-        window.location.href = getSuccessUrl(data.name);
-      });
-
-    // try {
-    //     const response = await fetch("/facial_recognition/authenticate", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({ image }),
-    //     });
-    //     if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-    //     const result = await response.json();
-    //     if (result.name) {
-    //         // message.textContent = `Bienvenido, ${result.name}!`;
-    //         window.location.href = getSuccessUrl(result.name);
-    //     } else {
-    //         message.textContent = result.error;
-    //     }
-    // } catch (error) {
-    //     showAlert("Error al intentar autenticar. Intente de nuevo, por favor.", "danger");
-    //     // message.textContent = "Error al intentar autenticar";
-    //     console.error("Error en la solicitud de autenticación.", error);
-    // }
 });
