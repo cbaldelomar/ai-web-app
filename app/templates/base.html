@@ -100,14 +100,16 @@
         <div class="logo">AI Web App</div>
         <a href="{{ url_for('home.index') }}">Home</a>
         <a href="{{ url_for('facial_recognition.index') }}">Raconocimiento Facial</a>
-        <a href="{{ url_for('sentiment_analysis.index', user_name='abc') }}">Análisis de Sentimientos</a>
+        <a href="{{ url_for('text_analysis.index', user_name='abc') }}">Análisis de Sentimientos</a>
         <a href="{{ url_for('chatbot.index') }}">Chatbot Inteligente</a>
     </div>
 
     <!-- Main Content -->
     <div class="content">
         <button class="btn btn-dark d-md-none" onclick="toggleSidebar()">☰ Menu</button>
-        {% block content %}{% endblock %}
+        
+        {% block content %}
+        {% endblock %}
 
         <div class="text-center mt-4" id="alert_placeholder">
         </div>
