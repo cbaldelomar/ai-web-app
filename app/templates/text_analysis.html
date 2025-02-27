@@ -1,23 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 text-center">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <div class="card shadow-lg border-0">
                 <div class="card-body p-5">
-                    <!-- <h1 class="text-center text-primary fw-bold">Análisis de Sentimientos</h1> -->
-                    <h1 class="text-center text-primary fw-bold">Bienvenido {{ user_name }}</h1>
-                    <p class="text-center text-muted">Detecta emociones en textos y obtén insights significativos.</p>
+                    <h1 class="text-center text-primary fw-bold">Análisis de texto y Reconocimiento de voz</h1>
+                    <!-- <h1 class="text-center text-primary fw-bold">Bienvenido {{ user_name }}</h1> -->
+                    <p class="text-center text-muted">¡Hola {{ user_name }}! Detecta emociones en textos y obtén insights significativos.</p>
                     
-                    <label for="textInput" class="form-label fw-bold">Ingrese el texto para analizar:</label>
-                    <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
+                    <label for="textInput" class="form-label fw-bold">Ingresa el texto para analizar</label>
+                    <div id="activateMic" class="mb-1">(O presiona <i class="fas fa-microphone text-primary"></i> para comenzar a hablar)</div>
+                    <div id="deactivateMic" class="mb-1 d-none">Escuchando... presiona <i class="fas fa-microphone-slash text-primary"></i> para detener</div>
+                    <div class="input-group">
+                        <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
+                        <button class="btn btn-outline-secondary d-none" type="button" id="stopButton"><i class="fas fa-microphone-slash fa-beat fa-fw"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" id="startButton"><i class="fas fa-microphone fa-fw"></i></button>
+                    </div>
                     <div>
                         <span class="text-danger" id="inputValidation"></span>
                     </div>
-                    <button type="button" id="startButton" class="btn btn-primary mt-4">Comenzar a hablar</button>
-                    <button type="button" id="stopButton" class="btn btn-warning mt-4">Terminar de hablar</button>
-                    <button type="button" id="enviarButton" class="btn btn-success mt-4">Enviar</button>
+                    
+                    <!-- <button type="button" id="startButton" class="btn btn-primary mt-4">Comenzar a hablar</button> -->
+                    <!-- <button type="button" id="stopButton" class="btn btn-warning mt-4">Terminar de hablar</button> -->
+                    <button type="button" id="enviarButton" class="btn btn-success mt-4">Analizar texto</button>
 
                     <!-- <form method="POST">
                         <div class="mb-4">

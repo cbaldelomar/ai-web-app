@@ -3,6 +3,8 @@ const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const enviarButton = document.getElementById('enviarButton');
 const inputValidation = document.getElementById("inputValidation");
+const activateMic = document.getElementById('activateMic');
+const deactivateMic = document.getElementById('deactivateMic');
 
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'es-ES';
@@ -12,10 +14,20 @@ recognition.continuous = true;
 
 startButton.addEventListener('click', () => {
     textInput.value = "";
+    inputValidation.textContent = "";
+    startButton.classList.add("d-none");
+    activateMic.classList.add("d-none");
+    stopButton.classList.remove("d-none");
+    deactivateMic.classList.remove("d-none");
     recognition.start();
 });
 
 stopButton.addEventListener('click', () => {
+  inputValidation.textContent = "";
+  startButton.classList.remove("d-none");
+  activateMic.classList.remove("d-none");
+  stopButton.classList.add("d-none");
+  deactivateMic.classList.add("d-none");
   recognition.stop();
 });
 
@@ -25,7 +37,18 @@ recognition.onresult = (event) => {
 };
 
 recognition.onerror = (event) => {
-    console.error('Error en el reconocimiento de voz: ', event.error);
+  startButton.classList.remove("d-none");
+  activateMic.classList.remove("d-none");
+  stopButton.classList.add("d-none");
+  deactivateMic.classList.add("d-none");
+
+  const message = "Error al activar el reconocimiento de voz";
+  inputValidation.textContent = `${message}. Intente de nuevo.`;
+  console.error(`${message}: ${event.error}`);
+
+  if (event.message) {
+    console.log(`Additional information: ${event.message}`);
+  }
 };
 
 recognition.onspeechend = () => {
@@ -33,12 +56,16 @@ recognition.onspeechend = () => {
 };
 
 
-enviarButton.addEventListener("click", async () => {
+enviarButton.addEventListener("click", () => {
+  recognition.stop();
+
   const text = textInput.value.trim();
 
+  textInput.classList.remove("is-invalid");
   inputValidation.textContent = "";
   if (!text) {
       inputValidation.textContent = "Por favor, ingrese un texto.";
+      textInput.classList.add("is-invalid");
       textInput.focus()
       return;
   }
@@ -49,9 +76,11 @@ enviarButton.addEventListener("click", async () => {
     .then(() => {
       alert("Texto enviado");
       //window.location.href = getSuccessUrl(text);
-      enviarButton.disabled = true;
     })
     .catch(() => {
+      
+    })
+    .finally(() => {
       enviarButton.disabled = false;
     });
 });
