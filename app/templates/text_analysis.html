@@ -10,7 +10,16 @@
                     <h1 class="text-center text-primary fw-bold">Bienvenido {{ user_name }}</h1>
                     <p class="text-center text-muted">Detecta emociones en textos y obtén insights significativos.</p>
                     
-                    <form method="POST">
+                    <label for="textInput" class="form-label fw-bold">Ingrese el texto para analizar:</label>
+                    <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
+                    <div>
+                        <span class="text-danger" id="inputValidation"></span>
+                    </div>
+                    <button type="button" id="startButton" class="btn btn-primary mt-4">Comenzar a hablar</button>
+                    <button type="button" id="stopButton" class="btn btn-warning mt-4">Terminar de hablar</button>
+                    <button type="button" id="enviarButton" class="btn btn-success mt-4">Enviar</button>
+
+                    <!-- <form method="POST">
                         <div class="mb-4">
                             <label for="textInput" class="form-label fw-bold">Ingrese el texto para analizar:</label>
                             <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
@@ -18,7 +27,7 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">Analizar Sentimiento</button>
                         </div>
-                    </form>
+                    </form> -->
 
                     {% if result %}
                     <div class="mt-4 text-center">
@@ -31,4 +40,5 @@
         </div>
     </div>
 </div>
+<script src="{{ url_for('static', filename='js/speech.js') }}"></script>
 {% endblock %}
