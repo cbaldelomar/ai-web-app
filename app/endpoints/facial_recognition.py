@@ -70,7 +70,14 @@ def register():
     face_encodings = face_recognition.face_encodings(rgb_image)
 
     if not face_encodings:
-        return jsonify({"message": "No se detectó ningun rostro en la imagen."}), 400
+        return (
+            jsonify(
+                {
+                    "message": "No se detectó ningun rostro en la imagen. Intente de nuevo."
+                }
+            ),
+            400,
+        )
 
     new_face_encoding = face_encodings[0]
 
