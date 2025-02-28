@@ -6,13 +6,12 @@
         <div class="col-lg-9">
             <div class="card shadow-lg border-0">
                 <div class="card-body p-5">
-                    <h1 class="text-center text-primary fw-bold">Análisis de texto y Reconocimiento de voz</h1>
-                    <!-- <h1 class="text-center text-primary fw-bold">Bienvenido {{ user_name }}</h1> -->
-                    <p class="text-center text-muted">¡Hola {{ user_name }}! Detecta emociones en textos y obtén insights significativos.</p>
+                    <h1 class="text-primary fw-bold">Reconocimiento de voz y Análisis de texto</h1>
+                    <p class="text-muted fs-5">¡Hola <span class="fw-bold">{{ user_name }}</span>! Detecta emociones en textos y obtén insights significativos.</p>
                     
                     <label for="textInput" class="form-label fw-bold">Ingresa el texto para analizar</label>
                     <div id="activateMic" class="mb-1">(O presiona <i class="fas fa-microphone text-primary"></i> para comenzar a hablar)</div>
-                    <div id="deactivateMic" class="mb-1 d-none">Escuchando... presiona <i class="fas fa-microphone-slash text-primary"></i> para detener</div>
+                    <div id="deactivateMic" class="mb-1 d-none">(Escuchando... presiona <i class="fas fa-microphone-slash text-primary"></i> para detener)</div>
                     <div class="input-group">
                         <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
                         <button class="btn btn-outline-secondary d-none" type="button" id="stopButton"><i class="fas fa-microphone-slash fa-beat fa-fw"></i></button>
@@ -22,26 +21,21 @@
                         <span class="text-danger" id="inputValidation"></span>
                     </div>
                     
-                    <!-- <button type="button" id="startButton" class="btn btn-primary mt-4">Comenzar a hablar</button> -->
-                    <!-- <button type="button" id="stopButton" class="btn btn-warning mt-4">Terminar de hablar</button> -->
-                    <button type="button" id="enviarButton" class="btn btn-success mt-4">Analizar texto</button>
-
-                    <!-- <form method="POST">
-                        <div class="mb-4">
-                            <label for="textInput" class="form-label fw-bold">Ingrese el texto para analizar:</label>
-                            <textarea class="form-control" id="textInput" name="text" rows="4" placeholder="Escribe aquí..." required></textarea>
+                    <button type="button" id="enviarButton" class="btn btn-primary mt-4">Analizar texto <i class="fas fa-rotate fa-spin d-none"></i></button>
+                </div>
+                <div id="result" class="d-none">
+                    <div class="container">
+                        <h3>Resultado de Clasificación de Solicitudes</h3>
+                        <div class="department-container fw-bold">
+                            <strong>Departamento: </strong><span id="department"></span>
+                            <!-- 📌 <strong>Departamento asignado:</strong> {% if departamento == 'Atención al Cliente' %}📞 Atención al Cliente{% elif departamento == 'Soporte Técnico' %}🛠️ Soporte Técnico{% elif departamento == 'Facturación' %}💰 Facturación{% elif departamento == 'Caja' %}🏦 Caja{% elif departamento == 'Recursos Humanos' %}👥 Recursos Humanos{% else %}🏢 Otro Departamento{% endif %} -->
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">Analizar Sentimiento</button>
-                        </div>
-                    </form> -->
-
-                    {% if result %}
-                    <div class="mt-4 text-center">
-                        <h4 class="fw-bold">Resultado:</h4>
-                        <p class="fs-5">{{ result }}</p>
                     </div>
-                    {% endif %}
+                    <hr>
+                    <div class="container">
+                        <h3>Resultados de Análisis de Sentimiento</h3>
+                        <div id="oraciones" class="sentimientos mt-3"></div>
+                    </div>
                 </div>
             </div>
         </div>

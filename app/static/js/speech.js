@@ -5,6 +5,8 @@ const enviarButton = document.getElementById('enviarButton');
 const inputValidation = document.getElementById("inputValidation");
 const activateMic = document.getElementById('activateMic');
 const deactivateMic = document.getElementById('deactivateMic');
+const result = document.getElementById("result");
+const icon = enviarButton.querySelector("i");
 
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'es-ES';
@@ -13,21 +15,10 @@ recognition.maxAlternatives = 1;
 recognition.continuous = true;
 
 startButton.addEventListener('click', () => {
-    textInput.value = "";
-    inputValidation.textContent = "";
-    startButton.classList.add("d-none");
-    activateMic.classList.add("d-none");
-    stopButton.classList.remove("d-none");
-    deactivateMic.classList.remove("d-none");
     recognition.start();
 });
 
 stopButton.addEventListener('click', () => {
-  inputValidation.textContent = "";
-  startButton.classList.remove("d-none");
-  activateMic.classList.remove("d-none");
-  stopButton.classList.add("d-none");
-  deactivateMic.classList.add("d-none");
   recognition.stop();
 });
 
@@ -51,7 +42,21 @@ recognition.onerror = (event) => {
   }
 };
 
-recognition.onspeechend = () => {
+recognition.onstart = () => {
+  textInput.value = "";
+  inputValidation.textContent = "";
+  startButton.classList.add("d-none");
+  activateMic.classList.add("d-none");
+  stopButton.classList.remove("d-none");
+  deactivateMic.classList.remove("d-none");
+  console.log("Speech recognition service has started");
+};
+
+recognition.onend = () => {
+  startButton.classList.remove("d-none");
+  activateMic.classList.remove("d-none");
+  stopButton.classList.add("d-none");
+  deactivateMic.classList.add("d-none");
   console.log("Speech has stopped being detected");
 };
 
@@ -59,28 +64,56 @@ recognition.onspeechend = () => {
 enviarButton.addEventListener("click", () => {
   recognition.stop();
 
+  textInput.classList.remove("is-invalid");
+  result.classList.add("d-none");
+  inputValidation.textContent = "";
+  enviarButton.disabled = true;
+  icon.classList.remove("d-none");
+
+  // Esperar uns segundo para enviar el texto.
+  setTimeout(() => {
+    sendText();
+  }, 500);
+});
+
+const sendText = () => {
   const text = textInput.value.trim();
 
-  textInput.classList.remove("is-invalid");
-  inputValidation.textContent = "";
   if (!text) {
       inputValidation.textContent = "Por favor, ingrese un texto.";
       textInput.classList.add("is-invalid");
       textInput.focus()
+      enviarButton.disabled = false;
+      icon.classList.add("d-none");
       return;
   }
 
-  enviarButton.disabled = true;
-  
   fetchData("/text-analysis/analyze", "POST", { text })
-    .then(() => {
-      alert("Texto enviado");
-      //window.location.href = getSuccessUrl(text);
+    .then(data => {
+      const department = document.getElementById("department");
+      department.textContent = data.departamento;
+
+      const oracionesDiv = document.getElementById("oraciones");
+      oracionesDiv.innerHTML = "";
+
+      data.sentimientos.forEach(resultado => {
+          oracionesDiv.innerHTML += `
+              <div>
+                  <p><strong>Oración:</strong> ${resultado.oracion}</p>
+                  <p><strong>Sentimiento:</strong> ${resultado.sentimiento}</p>
+                  <p><strong>Confianza:</strong> ${resultado.confianza}</p>
+                  <img class="sticker" src="/static/img/stickers/${resultado.sticker}" alt="Sticker">
+              </div>
+          `;
+      });
+
+      result.classList.remove("d-none");
     })
     .catch(() => {
       
     })
     .finally(() => {
       enviarButton.disabled = false;
+      icon.classList.add("d-none");
     });
-});
+}
