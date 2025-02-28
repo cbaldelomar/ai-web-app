@@ -62,10 +62,12 @@ registerBtn.addEventListener("click", () => {
     nameInput.classList.remove("is-invalid");
     message.textContent = "";
     nameValidation.textContent = "";
-    if (!name) {
-        nameValidation.textContent = "Por favor, ingrese su nombre.";
+
+    invalid = invalidName(name);
+    if (invalid) {
+        nameValidation.textContent = invalid;
         nameInput.classList.add("is-invalid");
-        nameInput.focus()
+        nameInput.focus();
         return;
     }
 
@@ -86,3 +88,28 @@ registerBtn.addEventListener("click", () => {
         authenticateBtn.disabled = false;
       });
 });
+
+const invalidName = (name) => {
+  if (!name || typeof name !== "string") {
+      return "Por favor, ingrese su nombre.";
+  }
+
+  // Prevent path traversal attacks
+  if (name.includes("..")) {
+      return "El nombre no puede contener dos puntos seguidos (..)";
+  }
+
+  // Disallow special characters that are unsafe in filenames
+  const invalidChars = /[<>:"/\\|?*]/;
+  if (invalidChars.test(name)) {
+      return 'El nombre no puede contener los siguientes carácteres: < > : " / \\ | ? *';
+  }
+
+  // Limit length to prevent filesystem issues
+  if (name.length < 3 || name.length > 30) {
+      return "El nombre debe tener entre 3 y 30 carácteres.";
+  }
+
+  // No errors, valid filename
+  return null;
+}

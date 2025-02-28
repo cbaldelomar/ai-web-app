@@ -9,7 +9,7 @@
                     <h1 class="text-primary fw-bold">Reconocimiento de voz y Análisis de texto</h1>
                     <p class="text-muted fs-5">¡Hola <span class="fw-bold">{{ user_name }}</span>! Detecta emociones en textos y obtén insights significativos.</p>
                     
-                    <label for="textInput" class="form-label fw-bold">Ingresa el texto para analizar</label>
+                    <label for="textInput" class="form-label fw-bold">Ingresa una queja o sugerencia para analizar</label>
                     <div id="activateMic" class="mb-1">(O presiona <i class="fas fa-microphone text-primary"></i> para comenzar a hablar)</div>
                     <div id="deactivateMic" class="mb-1 d-none">(Escuchando... presiona <i class="fas fa-microphone-slash text-primary"></i> para detener)</div>
                     <div class="input-group">
@@ -41,5 +41,5 @@
         </div>
     </div>
 </div>
-<script src="{{ url_for('static', filename='js/speech.js') }}"></script>
+<script src="{{ url_for('static', filename='js/text.js') }}"></script>
 {% endblock %}
