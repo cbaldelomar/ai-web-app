@@ -1,12 +1,23 @@
 """Modulo de análisis de texto"""
 
+import os
 from flask import Blueprint, render_template, request, jsonify
 from transformers import pipeline
 import nltk
 import joblib
 
+
+# Definir un directorio dentro del proyecto para almacenar los datos de NLTK
+NLTK_DATA_PATH = "app/utils/nltk_data"
+
+# Specify the path where nltk data is downloaded
+nltk.data.path.append(NLTK_DATA_PATH)
+
 # Descargar el recurso de tokenización de oraciones de NLTK
-nltk.download("punkt")
+# Descargar 'punkt' solo si no existe
+if not os.path.exists(os.path.join(NLTK_DATA_PATH, "tokenizers", "punkt")):
+    nltk.download("punkt", download_dir=NLTK_DATA_PATH)
+    # nltk.download("punkt")
 
 # Cargar el modelo de análisis de sentimientos
 analizador_sentimientos = pipeline(
