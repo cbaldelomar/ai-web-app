@@ -7,9 +7,9 @@
             <div class="card shadow-lg border-0">
                 <div class="card-body p-5">
                     <h1 class="text-center text-primary fw-bold">Chatbot Interactivo</h1>
-                    <p class="text-center text-muted">Interactúa con un chatbot impulsado por IA y aprende en tiempo real.</p>
+                    <p class="text-center text-muted fs-5">Interactúa con un chatbot impulsado por IA y aprende en tiempo real.</p>
 
-                    <div class="mb-4">
+                    <div class="iframe-container">
                         <iframe
                             src="https://www.chatbase.co/chatbot-iframe/ZdrBN2zOZ2KlyVPD7eqIt"
                             width="100%"
@@ -22,4 +22,17 @@
         </div>
     </div>
 </div>
+<style>
+    .iframe-container {
+      width: 100%; /* Ajustar el contenedor */
+      overflow: hidden; /* Evita desplazamientos innecesarios */
+    }
+    
+    .iframe-container iframe {
+      transform: scale(0.95);  /* Reduce el tamaño al 75% */
+      transform-origin: top left; /* Mantiene la escala desde la esquina superior izquierda */
+      width: 105.26%; /* Compensa la reducción para evitar bordes blancos */
+      height: 105.26%;
+    }
+    </style>
 {% endblock %}
