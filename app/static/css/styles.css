@@ -1,37 +1,57 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 .navbar {
-    background-color: #007bff;
+    background-color: #e3f2fd;
 }
 
-.navbar-brand, .navbar-nav .nav-link {
-    color: white !important;
+.nav-link:hover {
+    color: darkblue;
 }
 
-.navbar-brand:hover, .navbar-nav .nav-link:hover {
-    color: #e0e0e0 !important;
+/* Carousel Styling */
+.carousel-inner {
+    height: 300px; /* Fija la altura del carrusel */
+    overflow: hidden; /* Oculta la parte de la imagen que se sale */
 }
 
-.container {
-    margin-top: 20px;
+.carousel-item {
+    height: 300px; /* Mantiene la misma altura en todos los slides */
 }
 
-.card {
-    margin-bottom: 20px;
+.carousel-item img {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho disponible */
+    height: 100%; /* Ajusta la altura al contenedor */
+    object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+    object-position: center; /* Centra la imagen tanto horizontal como verticalmente */
 }
 
-.footer {
-    background-color: #f8f9fa;
-    padding: 10px 0;
-    text-align: center;
+/* Video Styling */
+video {
+    border-radius: 12px;
+    border: 6px solid #42a5f5;
+    /* width: 350px; */
+    height: 300px;
+    box-shadow: 0px 4px 12px rgba(66, 165, 245, 0.5);
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        text-align: center;
-    }
+/* Sentiment Styling */ 
+.sticker {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 10px auto;
+}
+
+.sentimientos div {
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Clasification Styling */
+.department-container {
+    background: #e9f7ef;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #155724;
 }
