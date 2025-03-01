@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('facial_recognition.index') }}">Explorar IA</a>
+                            <a class="nav-link {% if request.endpoint == 'facial_recognition.index' %}active{% endif %}" href="{{ url_for('facial_recognition.index') }}">Explorar IA</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.endpoint == 'chatbot.index' %}active{% endif %}" href="{{ url_for('chatbot.index') }}">Chatbot</a>
